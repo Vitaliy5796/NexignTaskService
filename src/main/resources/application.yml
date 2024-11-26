@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: NexignTaskService
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: task-service
+      auto-offset-reset: earliest
