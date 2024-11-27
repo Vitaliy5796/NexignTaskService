@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the application's jar to the container
-COPY target/nexign-task-service.jar app.jar
+COPY target/NexignTaskService-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application's port
 EXPOSE 8082
