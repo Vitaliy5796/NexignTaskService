@@ -30,21 +30,21 @@ public class TaskWorkerImpl implements TaskWorker {
             getTask.setStatus(TaskStatus.IN_PROGRESS);
             getTask.setResult("Task IN_PROGRESS");
 
-            log.info("[IN_PROGRESS] Attempting to save task with idempotency key: {}", idempotencyKey);
             Task saveTaskInProgress = taskRepository.save(getTask);
-            log.info("[IN_PROGRESS] Task with idempotency key {} saved successfully", idempotencyKey);
+            log.info("Task with idempotency key {} IN_PROGRESS", idempotencyKey);
 
             Thread.sleep(getTask.getDuration()); // Имитация выполнения
 
             saveTaskInProgress.setStatus(TaskStatus.COMPLETED);
             saveTaskInProgress.setResult("Task completed successfully");
 
-            log.info("[finally] Attempting to save task with idempotency key: {}", idempotencyKey);
             taskRepository.save(saveTaskInProgress);
-            log.info("[finally] Task with idempotency key {} saved successfully", idempotencyKey);
+            log.info("Task with idempotency key {} COMPLETED", idempotencyKey);
         } catch (InterruptedException e) {
             getTask.setStatus(TaskStatus.FAILED);
             getTask.setResult("Task execution interrupted");
+            taskRepository.save(getTask);
+            log.info("Task with idempotency key {} FAILED", idempotencyKey);
         }
     }
 }

@@ -1,6 +1,5 @@
 package ru.sidorov.nexigntaskservice.consumer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,7 @@ public class TaskConsumer {
             TaskRequest taskRequest = objectMapper.readValue(taskMessage, TaskRequest.class);
             taskService.registerTask(taskRequest);
         } catch (DuplicateTaskException e) {
-            log.error("JsonProcessingException: {}", e.getMessage());
+            log.error("DuplicateTaskException: {}", e.getMessage());
         } catch (DataIntegrityViolationException e) {
             if (e.getMessage().contains("tasks_idempotency_key_key")) {
                 log.warn("Duplicate key detected while consuming Kafka message: {}", taskMessage);

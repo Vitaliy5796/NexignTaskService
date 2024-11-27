@@ -1,7 +1,5 @@
 package ru.sidorov.nexigntaskservice.service.abstracts;
 
-import ru.sidorov.nexigntaskservice.models.entities.Task;
-
 public interface TaskWorker {
 
     /**

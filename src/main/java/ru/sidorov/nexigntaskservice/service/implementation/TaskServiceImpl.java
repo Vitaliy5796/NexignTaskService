@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
         String idempotencyKey = taskRequest.getIdempotencyKey();
 
         if (taskRepository.existsByIdempotencyKey(idempotencyKey)) {
-            log.info("Task with idempotency key {} already exists", idempotencyKey);
+            log.warn("Task with idempotency key {} already exists", idempotencyKey);
             throw new DuplicateTaskException();
         }
 
