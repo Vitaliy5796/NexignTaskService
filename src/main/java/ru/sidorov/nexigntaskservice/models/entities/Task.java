@@ -26,6 +26,9 @@ public class Task {
     @ApiModelProperty(notes = "Имя задачи")
     private String name;
 
+    @Column(name = "idempotency_key", nullable = false)
+    private String idempotencyKey;
+
     @Column
     @ApiModelProperty(notes = "Продолжительность выполнения задачи")
     private Long duration;

@@ -17,6 +17,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/nexign
     username: postgres
     password: postgres
+    hikari:
+      maximum-pool-size: 10
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
