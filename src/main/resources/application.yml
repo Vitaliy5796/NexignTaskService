@@ -11,8 +11,13 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+      isolation-level: read_committed
     listener:
       concurrency: 3
+      missing-topics-fatal: false
+      auto-startup: true
+      ack-mode: record
   datasource:
     url: jdbc:postgresql://localhost:5432/nexign
     username: postgres
@@ -36,6 +41,6 @@ logging:
     org.flywaydb: DEBUG
 
 task-executor:
-  core-pool-size: 5
-  max-pool-size: 10
-  queue-capacity: 50
+  core-pool-size: 20 # Базовое количество потоков
+  max-pool-size: 50 # Максимальное количество потоков
+  queue-capacity: 100 # Размер очереди задач

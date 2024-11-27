@@ -7,7 +7,7 @@ public interface TaskWorker {
     /**
      * Executes a task by simulating its execution via Thread.sleep.
      *
-     * @param task {@link Task}
+     * @param idempotencyKey {@link String}
      */
-    void executeTask(Task task);
+    void executeTask(String idempotencyKey);
 }

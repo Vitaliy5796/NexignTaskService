@@ -27,6 +27,7 @@ public class Task {
     private String name;
 
     @Column(name = "idempotency_key", nullable = false)
+    @ApiModelProperty(notes = "Идемпотентный ключ задачи")
     private String idempotencyKey;
 
     @Column

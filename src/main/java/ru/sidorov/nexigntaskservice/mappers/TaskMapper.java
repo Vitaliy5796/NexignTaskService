@@ -26,6 +26,7 @@ public interface TaskMapper {
     default Task toTask(TaskRequest taskRequest) {
         return Task.builder()
                 .name(taskRequest.getName())
+                .idempotencyKey(taskRequest.getIdempotencyKey())
                 .duration(taskRequest.getDuration())
                 .result("Task  PENDING")
                 .status(TaskStatus.PENDING)

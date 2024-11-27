@@ -17,6 +17,10 @@ public class TaskRequest {
     @NotBlank
     private String name;
 
+    @ApiModelProperty(notes = "Идемпотентный ключ задачи")
+    @NotBlank
+    private String idempotencyKey;
+
     @ApiModelProperty(notes = "Время выполнения")
     @Positive
     private Long duration;
