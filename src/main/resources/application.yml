@@ -1,8 +1,40 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: NexignTaskService
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: task-service
+      group-id: my-group
       auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      concurrency: 3
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nexign
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    baseline-on-migrate: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+logging:
+  level:
+    org.flywaydb: DEBUG
+
+
+task-executor:
+  core-pool-size: 5
+  max-pool-size: 10
+  queue-capacity: 50
