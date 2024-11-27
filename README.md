@@ -22,36 +22,12 @@
 - **Flyway**
 - **Swagger**
 
-## Установка и запуск
-
-### 1. Клонирование репозитория
-
-```bash
-git clone https://github.com/Vitaliy5796/NexignTaskService.git
-cd <папка приложения>
-```
-
-### 2. Запуск с помощью Docker
-
-Для запуска Kafka и PostgreSQL с помощью Docker используйте docker-compose.
-
-```bash
-docker-compose -f docker-compose.yml up
-```
-
-### 3. Запуск приложения
-
-Запустите Spring Boot приложение с помощью Maven
-
-```bash
-mvn spring-boot:run
-```
 
 ## API
 
 ### 1. Регистрация задачи
 
-Отправьте в kafka задачу в топик: "tasks".
+ля регистрации задачи отправьте сообщение в Kafka в топик tasks.
 
 Формат сообщения: 
 
@@ -62,16 +38,16 @@ mvn spring-boot:run
   "idempotencyKey" : "ik"
 }
 ```
-
-Преобразованный в строку с помощью objectMapper.writeValueAsString()
+Сообщение должно быть преобразовано в строку с помощью objectMapper.writeValueAsString().
 
 ### 2. Просмотр статуса задачи
 
+
 ***GET*** `http://localhost:8081/api/task/:taskId`
 
-Где taskId = id задачи.
+Где taskId - идентификатор задачи.
 
-Возвращает статус выполнения задачи по ее идентификатору.
+Ответ:
 
 ```json
 {
@@ -118,8 +94,3 @@ http://localhost:8081/swagger-ui/index.html#/task-controller
 
 ## Миграции базы данных
 Для создания структуры базы данных используется Flyway. Миграции находятся в папке src/main/resources/db/migration. Flyway автоматически применяет их при запуске приложения.
-
-# Заключение
-
-
-Этот файл `README.md` включает в себя все основные этапы установки и настройки проекта, информацию о ключевых API, миграциях и использовании Swagger.
