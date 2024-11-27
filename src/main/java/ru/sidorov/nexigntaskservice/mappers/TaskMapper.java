@@ -27,6 +27,7 @@ public interface TaskMapper {
         return Task.builder()
                 .name(taskRequest.getName())
                 .duration(taskRequest.getDuration())
+                .result("Task  PENDING")
                 .status(TaskStatus.PENDING)
                 .build();
     }

@@ -19,6 +19,7 @@ public class TaskWorkerImpl implements TaskWorker {
     public void executeTask(Task task) {
         try {
             task.setStatus(TaskStatus.IN_PROGRESS);
+            task.setResult("Task IN_PROGRESS");
             taskRepository.save(task);
 
             Thread.sleep(task.getDuration());

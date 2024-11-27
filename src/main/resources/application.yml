@@ -33,7 +33,6 @@ logging:
   level:
     org.flywaydb: DEBUG
 
-
 task-executor:
   core-pool-size: 5
   max-pool-size: 10

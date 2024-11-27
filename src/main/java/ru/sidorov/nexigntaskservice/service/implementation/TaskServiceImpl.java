@@ -26,11 +26,6 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskMapper.toTask(taskRequest);
 
         taskRepository.save(task);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage(), e);
-        }
 
         taskWorker.executeTask(task);
     }
